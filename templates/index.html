@@ -1,0 +1,113 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Bank Loan Prediction</title>
+    <style>
+        body {
+            background-image: url("/static/images/bankloan.webp");
+            background-size: cover;
+            text-align: center;
+            padding: 50px;
+            color: rgb(20, 1, 1);
+        }
+
+        form {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        input, select {
+            margin: 10px;
+            padding: 10px;
+            width: 200px; /* Set the width of input/select fields */
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            color: black; /* Change the color of the prediction result to black */
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold; /* Make the font bold */
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+                
+                // Get form data
+                var formData = $(this).serialize();
+
+                // Make AJAX request to predict route
+                $.ajax({
+                    type: 'POST',
+                    url: '/predict',
+                    data: formData,
+                    success: function(response) {
+                        // Update result on the same page
+                        $('#result').text('Predicted Class: ' + response.predicted_class);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Personal Bank Loan Prediction</h1>
+    <form>
+        Age: <input type="text" name="age" required><br>
+        Experience: <input type="text" name="experience" required><br>
+        Income: <input type="text" name="income" required><br>
+        Family: <input type="text" name="family" required><br>
+        CCAvg: <input type="text" name="cc_avg" required><br>
+        Education: <select name="education" required>
+            <option value="0">Undergraduate</option>
+            <option value="1">Graduate</option>
+            <option value="2">Advanced/Professional</option>
+        </select><br>
+        Mortgage: <select name="mortgage" required>
+            <option value="0">No Mortgage</option>
+            <option value="1">Has Mortgage</option>
+        </select><br>
+        Securities Account: <select name="securities_account" required>
+            <option value="0">No Securities Account</option>
+            <option value="1">Has Securities Account</option>
+        </select><br>
+        CD Account: <select name="cd_account" required>
+            <option value="0">No CD Account</option>
+            <option value="1">Has CD Account</option>
+        </select><br>
+        Online: <select name="online" required>
+            <option value="0">Not Online</option>
+            <option value="1">Online</option>
+        </select><br>
+        Credit Card: <select name="credit_card" required>
+            <option value="0">No Credit Card</option>
+            <option value="1">Has Credit Card</option>
+        </select><br>
+        <input type="submit" value="Predict">
+    </form>
+    <div id="result"></div>
+</body>
+</html>
