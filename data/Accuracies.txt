@@ -1,0 +1,49 @@
+Bankloan data to predict personal loan
+
+logistic regression accuracies
+training data accuracy >> 0.950
+testing data accuracy  >> 0.943
+
+**********************************************
+knnclassification
+
+default k and p values
+training data accuracy >> 0.972
+Testing data accuracy >> 0.953
+
+k = 4 p = 2
+training data accuracy >> 0.966
+Testing data accuracy >> 0.952
+
+k = 6 p = 1
+training data accuracy >> 0.956
+Testing data accuracy >> 0.948
+
+****************************************************
+Decision Tree classification
+criterion :- Gini
+Training data accuracy >> 1.0
+Testing data accuracy  >> 0.0.974
+
+
+After Hyper parameter tuning
+
+Train Accuracy : 0.9872
+Test Accuracy :  0.9842
+
+*********************************************
+Random forest
+
+Training accuracy >>> 0.999
+Testing accuracy >>> 0.988
+
+***************************************************
+Adaboost 
+
+Train accuracy    >>>>  0.975
+test accuracy     >>>>  0.972
+
+
+
+best model is decision tree 
+
