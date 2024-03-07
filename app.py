@@ -34,8 +34,13 @@ def predict():
         predicted_class = model_predictor.predict_class(test_array)
         predicted_class = int(predicted_class)
 
+        if predicted_class == 1:
+            return jsonify({'predicted_class': "User is eligible for Loan."})
+        else:
+           return jsonify({'predicted_class': "User is not eligible for Loan."})
+
         # Render the result on a new page
-        return jsonify({'predicted_class': predicted_class})
+        # return jsonify({'predicted_class': predicted_class, 'result': result})
     
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = config.PORT_NUMBER, debug=False)
